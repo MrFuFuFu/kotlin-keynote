@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Hi, Kotlin</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/wx.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section style="margin-top:2%" data-markdown>
+                    <script type="text/template">
+                        <span style="font-size:100px">Kotlin</span>
+
+                        <small>
+                            <a href="https://mrfu.me/">MrFu</a> /
+                            <a href="https://github.com/mrfufufu">@MrFuFuFu</a>
+                        </small>
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    <span style="font-size:80px">What’s the *Kotlin*?</span>
+
+                    <span style="font-size:30px">Statically typed programming language for modern multiplatform applications</span>
+
+                    <span style="font-size:30px">用于现代多平台应用的*静态编程语言*</span>
+
+                    <span style="font-size:20px">与 Java™ 和 Android™ 100% 可互操作</span>
+
+                    <span style="font-size:20px">Wiki: Kotlin是一种在*Java虚拟机*上运行的静态类型编程语言，它也可以被编译成为JavaScript源代码。</span>
+                    <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Why Kotlin?
+
+                        <img src="attach/whychooseit.png"/>
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown data-transition="zoom">
+                    <script type="text/template">
+                        <img src="attach/forSample.png"/><p/>
+                        <span style="font-size:80px">*Show me the code*</span>
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        <img src="attach/showmethecode.png"/><p/>
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        <span style="font-size:60px">What’s the different to *Java*?</span>
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        # *Safe*
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        NullPointerException
+
+                        ```java
+                        public void test(String string) {
+                            if (string != null) {
+                                char[] chars = string.toCharArray();
+                                if (chars.length > 10) {
+                                    System.out.println(((Character)chars[10]).hashCode());
+                                }
+                            }
+                        }
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown data-background="attach/bm_1.jpg"
+                    style="background:rgba(0,0,0,0.8)">
+                    <script type="text/template">
+                        ## *OMG  !!!!!*
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        NullPointerException
+
+                        ```java
+                        fun demo() {
+                            val string1: String = "string1"
+                            val string2: String? = null
+                            val string3: String? = "string3"
+
+                            println(string1.length)
+                            println(string2?.length)
+                            println(string3?.length)
+                        }
+                        //output result are:
+                        //7
+                        //null
+                        //7
+                        ```
+
+                        ```java
+                        val a: A? = A()
+                        println(a?.b?.c)
+                        ```
+                        <!-- .element: class="fragment" -->
+
+                        I don’t care what the return of server.
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        How *compiler* can help us?
+
+                        ```java
+                        var output: String
+                        output = null   // Compilation error
+                        ```
+                        <!-- .element: class="fragment" -->
+
+                        ```java
+                        val name: String? = null    // Nullable type
+                        println(name.length())      // Compilation error
+                        println(name?.length())     // No problem
+                        ```
+                        <!-- .element: class="fragment" -->
+
+                        ```java
+                        fun calculateTotal(obj: Any) {
+                            if (obj is Invoice)
+                                obj.calculateTotal()//auto-cast
+                        }
+                        ```
+                        <!-- .element: class="fragment" -->
+
+                        I don’t care what the return of server.
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template" style="font-size: 0.85em">
+                        <span style="font-size:70px">*Auto-cast*</span>
+
+                        ```java
+                        //Java
+                        if(view instanceof TextView) {
+                            ((TextView) view).setText("text");
+                        }
+                        //Kotlin
+                        if(view is TextView) {
+                            (view as TextView).setText("text")
+                        }
+                        ```
+
+                        ```java
+                        if(view is TextView) {
+                            view.setText("text")
+                        }
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown data-transition="convex">
+                    <script type="text/template">
+                        <span style="font-size:80px">Just so so?</span>
+
+                        <blockquote class="fragment"><p>*sample again!*</p></blockquote>
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+
+                <section data-markdown data-transition="convex">
+                    <script type="text/template">
+                        # *Concise*
+                    </script>
+                </section>
+
+
+                <section data-markdown data-transition="convex">
+                    <script type="text/template">
+                        ```java
+                        //getters, setters, equals(), hashCode(), toString() and copy() in a single line
+                        data class Customer(val name: String, val email: String, val company: String)
+                        ```
+
+                        ```java
+                        //lambda expression
+                        val positiveNumbers = list.filter { it > 0 }
+
+                        //other lambda
+                        findViewById(R.id.content).setOnClickListener {
+                            Log.d("MainActivity", "$it was clicked")
+                        }
+                        ```
+                        <!-- .element: class="fragment" -->
+
+                        ```java
+                        //singleton
+                        object ThisIsASingleton {
+                            val companyName: String = "JetBrains"
+                        }
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown data-transition="convex">
+                    <script type="text/template">
+                        More singleton
+                        ```java
+                        object Log {
+                            fun i(string: String) {
+                                println(string)
+                            }
+                        }
+                        fun main(args: Array<String>) {
+                            Log.i("test")//say bye bey with Singleton
+                        }
+                        ```
+                        ```java
+                        //Java bean
+                        data class Column(
+                            var subId: String?,
+                            var subTitle: String?,
+                            var subImg: String?,
+                            var subCreatetime: String?,
+                            var subUpdatetime: String?,
+                            var subFocusnum: Int?,
+                            var lastId: String?,
+                            var lastMsg: String?,
+                            var lastType: String?,
+                            var lastMember: String?,
+                            var lastTIme: String?,
+                            var focus: String?,
+                            var subDesc: String?,
+                            var subLikenum: Int?,
+                            var subContentnum: Int?,
+                            var pushSet: String?
+                        )
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown data-transition="convex">
+                    <script type="text/template">
+                        # *Interoperable*
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ```java
+                        //Use any existing library on the JVM, as there’s 100% compatibility
+                        import io.reactivex.Flowable
+                        import io.reactivex.schedulers.Schedulers
+
+                        Flowable
+                            .fromCallable {
+                                Thread.sleep(1000) //  imitate expensive computation
+                                "Done"
+                            }
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(Schedulers.single())
+                            .subscribe(::println, Throwable::printStackTrace)
+                        ```
+
+                        ```javascript
+                        //deploy to JavaScript
+                        import kotlin.browser.window
+
+                        fun onLoad() {
+                            window.document.body!!.innerHTML += "<br/>Hello, Kotlin!"
+                        }
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown data-transition="convex">
+                    <script type="text/template">
+                        # *Tool-friendly*
+                    </script>
+                </section>
+
+                <section data-markdown data-transition="zoom">
+                    <script type="text/template">
+                        <img src="attach/tooling.png"/><p/>
+                    </script>
+                </section>
+
+                <section data-markdown data-transition="convex">
+                    <script type="text/template">
+                        ## *Other skills*
+                    </script>
+                </section>
+
+                <section data-markdown data-transition="convex">
+                    <script type="text/template">
+                        ## *Extension*
+
+                        Almost same with *Category* in Objective-C
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ```java
+                        //Java
+                        Toast.makeText(context, "this is a toast", Toast.LENGTH_SHORT).show();
+                        //normal method
+                        ToastUtil.showShort("this is a toast");
+                        ```
+
+                        ```java
+                        //Kotlin
+                        context.toast("this is a toast")
+                        toast("this is a toast")
+                        longToast("this is a toast")
+                        ```
+                        <!-- .element: class="fragment" -->
+
+                        ```java
+                        fun Context.longToast(message: String) {
+                            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                        }
+                        context.longToast("hello world")
+                        //not really change the class files, it just helped by IDE and compiler
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## String template
+                        ```java
+                        val book = Book("Thinking In Java", 59.0f, "Unknown")
+                        val extraValue = "extra"
+                        Log.d("MainActivity", "book.name = ${book.name}; book.price=${book.price};extraValue=$extraValue")
+                        ```                        
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## *Show me more, PLZ.*
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        <span style="font-size:50px">Thread switch, so easy</span>
+                        ```java
+                        async {
+                            val response = URL("https://www.mrfu.me").readText()
+                            uiThread {
+                                textView.text = response
+                            }
+                        }
+                        ```                        
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    <span style="font-size:50px">Working more smooth with *Android*</span>
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## anko
+                        ```java
+                        override fun onCreate(savedInstanceState: Bundle?) {
+                            super.onCreate(savedInstanceState)
+                            //setContentView(R.layout.activity_main);
+
+                            verticalLayout {
+                                textView {
+                                    text = "This is title"
+                                }.lparams {
+                                    width = matchParent
+                                    height = dip(44)
+                                }
+
+                                textView {
+                                    text = "This is content"
+                                    gravity = Gravity.CENTER
+                                }.lparams {
+                                    width = matchParent
+                                    height = matchParent
+                                }
+                            }
+                        }
+                        ```                        
+                    </script>
+                </section>
+                
+                <section data-markdown>
+                    <script type="text/template">
+                        Say bye bye with *tool classes*
+                        ```java
+                        fun ImageView.displayUrl(url: String?) {
+                            if (url == null || url.isEmpty() || url == "url") {
+                                imageResource = R.mipmap.ic_launcher
+                            } else {
+                                Glide.with(context).load(url).into(this)
+                            }
+                        }
+                        ...
+                        val imageView = findViewById(R.id.avatarIv) as ImageView
+                        imageView.displayUrl(url)
+                        ```                        
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        <span style="font-size:50px">Say *Nooooo* to *findViewById*</span>
+                        ```java
+                        //Java
+                        TextView onlyTv = (TextView)findViewById(R.id.onlyTv);
+                        //Kotlin
+                        val onlyTv = findViewById(R.id.onlyTv) as TextView
+                        ```
+                        ```java
+                        //support by anko
+                        val onlyTv = find<TextView>(R.id.onlyTv)
+                        val onlyTv: TextView = find(R.id.onlyTv)
+                        //find source code:  inline fun <reified T : View> Activity.find(id: Int): T = findViewById(id) as T
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown data-transition="zoom">
+                    <script type="text/template">
+                        <img src="attach/findbyid.png"/><p/>
+
+                        A bit like *DataBinding*
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        <span style="font-size:50px">*startActivity*</span>
+                        ```java
+                        //Java
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("name", "San Zhang");
+                        intent.putExtra("age", 27);
+                        startActivity(intent);
+                        ```
+                        ```java
+                        //Kotlin
+                        startActivity<MainActivity>()
+                        startActivity<MainActivity>("name" to "San Zhang", "age" to 27)
+                        startActivityForResult<MainActivity>(101, "name" to "San Zhang", "age" to 27)
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        <span style="font-size:50px">Using *Higher-order function* to *gao things*</span>
+                        ```java
+                        inline fun debug(code: () -> Unit) {
+                            if (BuildConfig.DEBUG) {
+                                code()
+                            }
+                        }
+                        ...
+                        //in Application
+                        debug {
+                            Timber.plant(Timber.DebugTree())
+                        }
+                        ```
+                        ```java
+                        supportsLollipop {
+                            window.statusBarColor = Color.TRANSPARENT
+                            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        }
+                        //compare with below code:
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {// do something
+                        }
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        <span style="font-size:50px">Using *Higher-order function* to *gao things 2*</span>
+                        ```java
+                        inline fun handleException(code : () -> Unit) {
+                            try {
+                                code()
+                            } catch (e : Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+                        ...
+                        handleException {
+                             println(Integer.parseInt("String will throw a Exception"))
+                        }
+                        ```
+                        <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        <span style="font-size:50px">Using *Extension method* to replace Tool class</span>
+                        ```java
+                        fun String.isName(): Boolean {
+                            if (isEmpty() || length > 10 || contains(" ")) {
+                                return false
+                            }
+
+                            val reg = Regex("^[a-zA-Z0-9\u4e00-\u9fa5]+$")
+                            return reg.matches(this)
+                        }
+
+                        fun String.isPassword(): Boolean {
+                            return length in 6..12
+                        }
+
+                        fun String.isNumber(): Boolean {
+                            val regEx = "^-?[0-9]+$"
+                            val pat = Pattern.compile(regEx)
+                            val mat = pat.matcher(this)
+
+                            return mat.find()
+                        }
+                        ...
+
+                        println("张三".isName())
+                        println("123abc".isPassword())
+                        println("123456".isNumber())
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        <span style="font-size:50px">getter、setter</span>
+                        ```java
+                        //Java
+                        String text = textView.getText().toString();
+                        textView.setText("new text");
+
+                        //Kotlin
+                        val text = textView.text
+                        textView.text = "new text"
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Last but not least
+                        ### *Life is short, use Kotlin*
+                        #### *人生苦短，我用 Kotlin*
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        # *Question*
+
+                        Hey, don’t be shy.
+
+                    </script>
+                </section>
+
+                <section style="text-align: left;">
+                    <h1>THE END</h1>
+
+                    <h5>MrFu</h5>
+                    <small>
+                        <a href="http://mrfu.me">Blog</a> /
+                        <a href="https://github.com/MrFuFuFu">GitHub</a>
+                    </small>
+                    <p/>
+
+                    <h6>Thanks</h6>
+                    <small>
+                        <a href="https://kotlinlang.org/">Kotlin Programming Language</a> <p/>
+                        <a href="http://droidyue.com/blog/2017/05/18/why-do-i-turn-to-kotlin/">为什么我要改用Kotlin</a> <p/>
+                        <a href="http://www.jianshu.com/p/8a1fce6fa93a#">用 Kotlin 开发 Android 项目是一种什么样的感受？</a><p/>
+                        <a href="http://www.jianshu.com/p/b444aea1b038">用 Kotlin 开发 Android 项目是一种什么样的感受？（二）</a> <p/>
+                    </small>
+                </section>
+            </div>
+        </div>
+
+        <pre style="display:none"><code> force highlight.js work </code></pre>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+        <script type="text/javascript">
+            function codeEditor(){
+                var nodes = document.querySelectorAll("code");
+                for (var i = 0; i < nodes.length; i++) {
+                    nodes[i].setAttribute("contenteditable", '');
+                }
+                console.log('code editable now.');
+            }
+            window.codeEditor = codeEditor;
+
+            document.addEventListener('DOMContentLoaded', function(){
+                setTimeout(function(){
+                    codeEditor();
+                },1000)
+            })
+        </script>
+    </body>
+</html>
